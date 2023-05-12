@@ -1,22 +1,31 @@
 import discord
+import get_local_time as glt
 
 TOKEN = "MTEwNTczNjg3MDExOTM1MDMxMw.GT1F4o.3DQwvjSnLzAWHaj7omHpzeqIihV_iLYH_AJ3NU"
 
 
-class MyClient(discord.Client):
-    async def on_ready(self):
-        print("Logged on as", self.user)
-
-    async def on_message(self, message):
-        # don't respond to ourselves
-        if message.author == self.user:
-            return
-
-        if message.content == "i love who?":
-            await message.channel.send("you love leann :)")
-
-
 intents = discord.Intents.default()
 intents.message_content = True
-client = MyClient(intents=intents)
+client = discord.Client(intents=intents)
+
+
+@client.event
+async def on_ready():
+    print(f"Logged in as {client.user}")
+
+
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+    if message.content.startswith(">hello"):
+        await message.channel.send("Heyy! How's it hanging?")
+    if message.content.lower() == ">la time":
+        current_time = glt.get_time_from_key("LA")
+        await message.channel.send("The time in Los Angeles, CA is " + current_time)
+    if message.content.lower() == ">bos time":
+        current_time = glt.get_time_from_key("BOS")
+        await message.channel.send("The time in Boston, MA is " + current_time)
+
+
 client.run(TOKEN)
