@@ -1,9 +1,10 @@
 import discord
 import datetime as dt
-from datetime import datetime
+from datetime import datetime, timezone
 from discord.ext import commands
 import get_local_time as glt
 import pytz
+import asyncio
 
 utc = dt.timezone.utc
 
@@ -81,6 +82,20 @@ async def hangtime(ctx, arg):
     else:
         await ctx.send("ERROR: incorrect date time format, please format with HHMMl or HHMMe")
     # current_time = glt.get_time_from_key(city)
+    while True:
+        print("running")
+        try:
+            await asyncio.sleep(5)
+            # print(ht)
+            # print(dt.datetime.now(timezone.utc))
+            if (dt.datetime.now(timezone.utc).hour == ht.hour) and (dt.datetime.now(timezone.utc).minute == ht.minute):
+                command = bot.get_command('hangupall')
+                await command(ctx)
+                # await ctx.send("Kicking everyone now")
+                break
+        except:
+            print("ERROR: something happened while looping check time")
+            break
 
 bot.load_extension('time_cog')
 bot.run(TOKEN)
