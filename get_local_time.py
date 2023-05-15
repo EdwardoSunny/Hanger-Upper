@@ -17,7 +17,7 @@ def get_time_from_key(key):
             tz_Boston = pytz.timezone("US/Eastern")
             datetime_Boston = datetime.now(tz_Boston)
             return datetime_Boston.strftime("%H:%M:%S")
-        case "LA":
+        case "LAX":
             tz_LA = pytz.timezone("US/Pacific")
             datetime_LA = datetime.now(tz_LA)
             return datetime_LA.strftime("%H:%M:%S")
