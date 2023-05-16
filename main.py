@@ -55,6 +55,7 @@ async def ptht(ctx):
     else:
         temp_ht = time_to_tz_naive(temp_ht, pytz.utc, pytz.timezone('America/New_York'))
     await ctx.send("Set to hang up at: " + str(temp_ht) + ", " + ht_city + " time")
+    # await ctx.send("Set to hang up at UTC: " + str(ht))
 
 # 0155b --> 1:55 BOS
 @bot.command(pass_context=True)
@@ -83,7 +84,6 @@ async def hangtime(ctx, arg):
         await ctx.send("ERROR: incorrect date time format, please format with HHMMl or HHMMe")
     # current_time = glt.get_time_from_key(city)
     while True:
-        print("running")
         try:
             await asyncio.sleep(5)
             # print(ht)
