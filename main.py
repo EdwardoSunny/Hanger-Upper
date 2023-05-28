@@ -96,5 +96,4 @@ async def hangtime(ctx, arg):
             print("ERROR: something happened while looping check time")
             break
 
-bot.load_extension('time_cog')
 bot.run(TOKEN)
