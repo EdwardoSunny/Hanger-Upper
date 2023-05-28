@@ -2,7 +2,6 @@ import discord
 import datetime as dt
 from datetime import datetime, timezone
 from discord.ext import commands
-import get_local_time as glt
 import pytz
 import asyncio
 
@@ -26,7 +25,7 @@ ht = dt.time(5,50,4) # 5:50 AM LAX time
 # convert to back to UTC timezone for comparision (reverse timezones to convert back and forth)
 ht = time_to_tz_naive(ht, pytz.timezone('America/Los_Angeles'), pytz.utc) # Boston timezone is: America/New_York
 ht_city = "LAX"
-TOKEN = "MTEwNTczNjg3MDExOTM1MDMxMw.GT1F4o.3DQwvjSnLzAWHaj7omHpzeqIihV_iLYH_AJ3NU"
+TOKEN = "xxx"
 
 intents = discord.Intents.default()
 intents.message_content = True
